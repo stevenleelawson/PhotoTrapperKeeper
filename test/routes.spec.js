@@ -63,6 +63,19 @@ describe('API-ROUTES', () => {
           throw error;
         })
     })
+
+    it('should send 422 status code if missing params', () => {
+      return chai.request(server)
+        .post('/api/v1/photos')
+        .send({
+          title: 'Merle'
+        })
+        .then(response => {
+          response.should.have.status(422);
+          response.body.should.be.a('object');
+          response.body.error.should.equal('Expected format: { title: <String>, photo_url: <String>. You are missing a photo_url property')
+        })
+    })
   })
 
   describe('DELETE /api/v1/photos/:id', () => {
@@ -74,6 +87,18 @@ describe('API-ROUTES', () => {
         })
         .catch(error => {
           throw error;
+        })
+    })
+  })
+  
+  it('should send a status of 404 if the id does not match', () => {
+      return chai.request(server)
+        .delete('/api/v1/photos/2022')
+        .then(response => {
+          response.should.have.status(404)
+        })
+        .catch(error => {
+          throw error
         })
     })
   })
