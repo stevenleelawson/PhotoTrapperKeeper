@@ -42,7 +42,7 @@ const postPhotos = async () => {
     },
     body: JSON.stringify(body)
   });
-
+  $('input').val('')
 }
 
 const deletePhoto = async (id) => {
