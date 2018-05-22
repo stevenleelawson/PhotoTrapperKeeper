@@ -34,7 +34,13 @@ const postPhotos = async () => {
     title: inputs[0].value,
     photo_url: inputs[1].value
   }
-  console.log('enpats', body)
+  $('.photo-section').append(
+    `<section class='photo-box temp'>
+      <h1>${body.title}</h1>
+      <img class="image" src=${body.photo_url} />
+      <button class='delete-photo'>Kill Photo</button>
+    </section>`
+  )
   const response = await fetch('/api/v1/photos', {
     method: 'POST',
     headers: {

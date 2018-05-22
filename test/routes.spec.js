@@ -32,12 +32,12 @@ describe('API-ROUTES', () => {
             response.should.be.json;
             response.should.have.status(200);
             response.body.should.be.an('array');
-            // response.body[0].should.have.property('id');
-            // response.body[0].id.should.equal(1);
-            // response.body[0].should.have.property('title');
-            // response.body[0].title.should.equal('Chimis');
-            // response.body[0].should.have.property('photo_url');
-            // response.body[0].photo_url.should.equal('https://cdn3.tmbi.com/secure/RMS/attachments/37/300x300/Beef-Chimichangas_exps8535_MB2751679C04_09_1b_RMS.jpg');
+            response.body[0].should.have.property('id');
+            response.body[0].id.should.equal(1);
+            response.body[0].should.have.property('title');
+            response.body[0].title.should.equal('Chimis');
+            response.body[0].should.have.property('photo_url');
+            response.body[0].photo_url.should.equal('https://cdn3.tmbi.com/secure/RMS/attachments/37/300x300/Beef-Chimichangas_exps8535_MB2751679C04_09_1b_RMS.jpg');
 
           })
           .catch(error => {
@@ -84,7 +84,7 @@ describe('API-ROUTES', () => {
       return chai.request(server)
         .delete(`/api/v1/photos/1`)
         .then(response => {
-          response.should.have.status(404);
+          response.should.have.status(204);
         })
         .catch(error => {
           throw error;
